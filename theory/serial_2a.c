@@ -3,7 +3,7 @@
 #include <time.h>
 
 void main(){
-  int N = 10;
+  int N = 100;
   float STARTVALUE = 2.;
   float a[N];
   
