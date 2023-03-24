@@ -5,6 +5,7 @@
 void main(){
   omp_set_dynamic(0); // Disable dynamic adjustment of number of threads
   omp_set_num_threads(omp_get_num_procs()); // Request as many threads as processors
+  //omp_set_num_threads(100);
 #pragma omp parallel 
   {
     int nthreads = omp_get_num_threads(); // returns number of threads

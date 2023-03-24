@@ -13,7 +13,7 @@ void main(){
   // Populate the array with random numbers from 0 to 99 with rand()%100
   begin = clock();
   
-  // Get DD with an reversed loop
+  // Get DD with an reversed loop (form D[final][final])
   for (j=ncol-1; j>=0; j--){
     for(i=nrow-1; i>=0; i--){
       DD[i][j]= rand()%100;
