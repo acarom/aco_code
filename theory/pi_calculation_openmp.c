@@ -37,11 +37,6 @@ void main() {
     
 #pragma omp parallel num_threads(n_threads) 
   {
-    /*
-    int nthreads = omp_get_num_threads(); // gets the number of threads
-    int n_length = N/nthreads;  // length of each sum per thread
-    */
-
     int ID = omp_get_thread_num();
     int nthreads = omp_get_num_threads(); // gets the number of threads
     
@@ -50,20 +45,12 @@ void main() {
     int lend = n_length * (ID+1);
 
     // printf("lend = %i \n", lend);
-    // printf("lstart = %i \n", lstart);
+
     //# pragma omp for 
     // for (int k = ID; k < N; k += nthreads){
     for (int k = lstart; k < lend; k++){
-        //printf("k = %i\n",k);
-        double divfun = (1.0/(1+2.0*k)); //10000
+        double divfun = (1.0/(1+2.0*k)); 
         sum += pow(m1over3,k)*divfun;
-   
-         /*
-        printf("Index =%i \n", k);
-        printf("Sum =%Lf \n", sum);
-        printf("## Pow = %f \n",pow(m1over3,k));
-        printf("## Div = %f \n",(1.0/(1.0+2*k))); 
-         */
     }
     //printf("Sum =%LE \n", sum);
     array[ID] = sum;
