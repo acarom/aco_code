@@ -27,7 +27,6 @@ void main() {
     double sqrt12 = sqrt(12);
     double m1over3 =  -1.0/3.0;
     
-
     //omp_set_dynamic(0);
     //omp_set_num_threads(omp_get_num_procs());
     //omp_set_num_threads(n_threads);
@@ -36,21 +35,24 @@ void main() {
     start_time = omp_get_wtime(); //omp.h for clocking the computation
     // double sum = 0.0;
     
-#pragma omp parallel num_threads(n_threads) //private(sum) //shared(array,b) 
+#pragma omp parallel num_threads(n_threads) 
   {
     /*
     int nthreads = omp_get_num_threads(); // gets the number of threads
     int n_length = N/nthreads;  // length of each sum per thread
     */
+
     int ID = omp_get_thread_num();
+    int nthreads = omp_get_num_threads(); // gets the number of threads
     
     double sum = 0.0;
     int lstart = n_length * ID;
     int lend = n_length * (ID+1);
 
-    //printf("ID = %i \n", ID);
-    //printf("n_length = %i \n", n_length);
+    // printf("lend = %i \n", lend);
+    // printf("lstart = %i \n", lstart);
     //# pragma omp for 
+    // for (int k = ID; k < N; k += nthreads){
     for (int k = lstart; k < lend; k++){
         //printf("k = %i\n",k);
         double divfun = (1.0/(1+2.0*k)); //10000
@@ -65,7 +67,7 @@ void main() {
     }
     //printf("Sum =%LE \n", sum);
     array[ID] = sum;
-    printf("Array[ %i ] = %E \n", ID,array[ID]);
+    //printf("Array[ %i ] = %E \n", ID,array[ID]);
   } // end of parallel section
     end_time = omp_get_wtime();
     
