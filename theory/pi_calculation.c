@@ -36,7 +36,7 @@ void main() {
     }
 
     // printf("Final Sum = %LE \n\n", (sqrt12*sum)-M_PI);
-    printf("Final Sum = %Lf \n\n", (sqrt12*sum));
+    printf("Final Sum = %.15Lf \n\n", (sqrt12*sum));
     double time2 = 1000.*(omp_get_wtime() - start); //ms
     double time = 1000.*(clock() - begin)/CLOCKS_PER_SEC; //ms
     
